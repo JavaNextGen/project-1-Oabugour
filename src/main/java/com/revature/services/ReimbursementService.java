@@ -6,6 +6,7 @@ import com.revature.models.User;
 
 import java.util.Collections;
 import java.util.List;
+import com.revature.repositories.ReimbursementDAO;
 
 /**
  * The ReimbursementService should handle the submission, processing,
@@ -25,6 +26,20 @@ import java.util.List;
  * </ul>
  */
 public class ReimbursementService {
+
+
+
+	ReimbursementDAO rDAO = new ReimbursementDAO();
+
+	public void updateReimbursement(String titleInput, int salaryInput) {
+		
+		rDAO.updateReimbursement(titleInput, salaryInput);
+		
+	}
+	
+	
+	
+	
 
     /**
      * <ul>

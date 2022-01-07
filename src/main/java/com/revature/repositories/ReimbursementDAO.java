@@ -33,4 +33,9 @@ public class ReimbursementDAO {
     public Reimbursement update(Reimbursement unprocessedReimbursement) {
     	return null;
     }
+
+	public void updateReimbursement(String titleInput, int salaryInput) {
+		// TODO Auto-generated method stub
+		
+	}
 }
