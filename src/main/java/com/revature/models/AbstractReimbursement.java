@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.util.Objects;
+import com.revature.models.Reimbursement;
 
 /**
  * This AbstractReimbursement class defines a minimum functionality for
@@ -21,86 +22,139 @@ import java.util.Objects;
  */
 public class AbstractReimbursement {
 
-    private int id;
-    private Status status;
-    private User author;
-    private User resolver;
-    private double amount;
+    protected int reimbursement_id;
+    protected int reimbursement_ammount;
+    protected String reimbursement_submitted; 
+    protected int reimbursement_author_fk;
+    protected int reimbursement_status_fk;
+    private int reimbursement_type_fk;
 
-    public AbstractReimbursement() {
+    public AbstractReimbursement(String string, String string2, String string3) {
         super();
     }
 
-    public AbstractReimbursement(int id, Status status, User author, User resolver, double amount) {
-        super();
-        this.id = id;
-        this.status = status;
-        this.author = author;
-        this.resolver = resolver;
-        this.amount = amount;
-    }
+	public AbstractReimbursement() {
+		super();
+		
+		this.reimbursement_id = reimbursement_id;
+		this.reimbursement_ammount = reimbursement_ammount;
+		this.reimbursement_submitted = reimbursement_submitted;
+		this.reimbursement_author_fk = reimbursement_author_fk;
+		this.reimbursement_status_fk = reimbursement_status_fk;
+		this.reimbursement_type_fk = reimbursement_type_fk;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public AbstractReimbursement(int int1, int int2, String string, String string2, String string3, String string4,
+			String sql) {
+		// TODO Auto-generated constructor stub
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	@Override
+	public String toString() {
+		return "AbstractReimbursement [reimbursement_id=" + reimbursement_id + ", reimbursement_ammount="
+				+ reimbursement_ammount + ", reimbursement_submitted=" + reimbursement_submitted
+				+ ", reimbursement_author_fk=" + reimbursement_author_fk + ", reimbursement_status_fk="
+				+ reimbursement_status_fk + ", reimbursement_type_fk=" + reimbursement_type_fk + "]";
+	}
 
-    public Status getStatus() {
-        return status;
-    }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+	
 
-    public User getAuthor() {
-        return author;
-    }
 
-    public void setAuthor(User author) {
-        this.author = author;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + reimbursement_ammount;
+		result = prime * result + reimbursement_author_fk;
+		result = prime * result + reimbursement_id;
+		result = prime * result + reimbursement_status_fk;
+		result = prime * result + ((reimbursement_submitted == null) ? 0 : reimbursement_submitted.hashCode());
+		result = prime * result + reimbursement_type_fk;
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
-    public User getResolver() {
-        return resolver;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractReimbursement other = (AbstractReimbursement) obj;
+		if (reimbursement_ammount != other.reimbursement_ammount)
+			return false;
+		if (reimbursement_author_fk != other.reimbursement_author_fk)
+			return false;
+		if (reimbursement_id != other.reimbursement_id)
+			return false;
+		if (reimbursement_status_fk != other.reimbursement_status_fk)
+			return false;
+		if (reimbursement_submitted == null) {
+			if (other.reimbursement_submitted != null)
+				return false;
+		} else if (!reimbursement_submitted.equals(other.reimbursement_submitted))
+			return false;
+		if (reimbursement_type_fk != other.reimbursement_type_fk)
+			return false;
+		return true;
+	}
 
-    public void setResolver(User resolver) {
-        this.resolver = resolver;
-    }
+	public int getReimbursement_id() {
+		return reimbursement_id;
+	}
 
-    public double getAmount() {
-        return amount;
-    }
+	public void setReimbursement_id(int reimbursement_id) {
+		this.reimbursement_id = reimbursement_id;
+	}
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+	public int getReimbursement_ammount() {
+		return reimbursement_ammount;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AbstractReimbursement that = (AbstractReimbursement) o;
-        return id == that.id && Double.compare(that.amount, amount) == 0 && status == that.status && Objects.equals(author, that.author) && Objects.equals(resolver, that.resolver);
-    }
+	public void setReimbursement_ammount(int reimbursement_ammount) {
+		this.reimbursement_ammount = reimbursement_ammount;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, status, author, resolver, amount);
-    }
+	public String getReimbursement_submitted() {
+		return reimbursement_submitted;
+	}
 
-    @Override
-    public String toString() {
-        return "AbstractReimbursement{" +
-                "id=" + id +
-                ", status=" + status +
-                ", author=" + author +
-                ", resolver=" + resolver +
-                ", amount=" + amount +
-                '}';
-    }
+	public void setReimbursement_submitted(String reimbursement_submitted) {
+		this.reimbursement_submitted = reimbursement_submitted;
+	}
+
+	public int getReimbursement_author_fk() {
+		return reimbursement_author_fk;
+	}
+
+	public void setReimbursement_author_fk(int reimbursement_author_fk) {
+		this.reimbursement_author_fk = reimbursement_author_fk;
+	}
+
+	public int getReimbursement_status_fk() {
+		return reimbursement_status_fk;
+	}
+
+	public void setReimbursement_status_fk(int reimbursement_status_fk) {
+		this.reimbursement_status_fk = reimbursement_status_fk;
+	}
+
+	public int getReimbursement_type_fk() {
+		return reimbursement_type_fk;
+	}
+
+	public void setReimbursement_type_fk(int reimbursement_type_fk) {
+		this.reimbursement_type_fk = reimbursement_type_fk;
+	}
+
 }

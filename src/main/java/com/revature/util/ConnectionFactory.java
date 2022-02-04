@@ -43,7 +43,7 @@ public class ConnectionFactory {
     		
     	}
     	
-    	String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=p1demo";
+    	String url = "jdbc:postgresql://localhost:5433/postgres?currentSchema=project1";
     	
     	String username = "postgres";
  

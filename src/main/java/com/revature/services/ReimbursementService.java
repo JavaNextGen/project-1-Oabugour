@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import com.revature.models.AbstractReimbursement;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
 import com.revature.models.User;
@@ -29,15 +30,15 @@ public class ReimbursementService {
 
 
 
-	ReimbursementDAO rDAO = new ReimbursementDAO();
-
-	public void updateReimbursement(String titleInput, int salaryInput) {
+	ReimbursementDAO rDAO = new ReimbursementDAO(); //**
+	 AbstractReimbursement ar  = new AbstractReimbursement(null, null, null);
+	 
+	public void updateReimbursement(String titleInput, int salaryInput) { //**
 		
-		rDAO.updateReimbursement(titleInput, salaryInput);
+		rDAO.updateReimbursement(titleInput, salaryInput);//**
 		
-	}
-	
-	
+		
+	}	
 	
 	
 
@@ -65,4 +66,54 @@ public class ReimbursementService {
     public List<Reimbursement> getReimbursementsByStatus(Status status) {
         return Collections.emptyList();
     }
+    
+    public void getReimRqst(Reimbursement newRqst) {
+
+    }
+    
+    /*
+     * ***********
+     */
+
+    ReimbursementDAO newReDAO = new ReimbursementDAO();//**
+    AbstractReimbursement newAdd  = new AbstractReimbursement();
+
+
+  //  public void insertRemRq(double amount, String username1, int reimbId, int reimbus_id) {
+
+    public void insertRemRq(AbstractReimbursement newAb) {
+ 	   
+       newReDAO.insertRemRq(newAb);
+    }
+
+
+    public void UpdateReimbursement(String newStatus, int requst_id, int newStatusId) {
+      
+ 	   newReDAO.UpdateRemRq(newStatus, requst_id, newStatusId);
+    }
+
+    public List<AbstractReimbursement> GetReimbursementsbyStatus(String string ) {
+       return newReDAO.GetReimbursementsbyStatus(string);
+    }
+
+    public void GetReimbursementsAll2() {
+       newReDAO.GetReimbursementsAll();
+    }
+
+    public List<AbstractReimbursement> GetReimbursementsAll() {
+ 	     return  newReDAO.GetReimbursementsAll();
+ 	   }
+
+
+    public int maximumReimbId() {
+       return newReDAO.maximumReimbId();
+    }
+
+
+
+
+    
+
+    
+ 
 }

@@ -37,9 +37,9 @@ public class AuthServiceTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		EMPLOYEE_TO_REGISTER = new User(0, "genericEmployee1", "genericPassword", Role.EMPLOYEE);
-		GENERIC_EMPLOYEE_1 = new User(1, "genericEmployee1", "genericPassword", Role.EMPLOYEE);
-		GENERIC_FINANCE_MANAGER_1 = new User(1, "genericManager1", "genericPassword", Role.FINANCE_MANAGER);
+		EMPLOYEE_TO_REGISTER = new User(0, "genericEmployee1", "genericPassword", 1);
+		GENERIC_EMPLOYEE_1 = new User(1, "genericEmployee1", "genericPassword", 1);
+		GENERIC_FINANCE_MANAGER_1 = new User(1, "genericManager1", "genericPassword",2);
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class AuthServiceTest {
 			() -> authService.register(EMPLOYEE_TO_REGISTER)
 		);
 
-		verify(userService).getByUsername(EMPLOYEE_TO_REGISTER.getUsername());
+		verify(userService).getByUsername(EMPLOYEE_TO_REGISTER.getErs_username());
 		verify(userDAO, never()).create(EMPLOYEE_TO_REGISTER);
 	}
 
@@ -61,7 +61,7 @@ public class AuthServiceTest {
 		
 		assertEquals(GENERIC_EMPLOYEE_1, authService.register(EMPLOYEE_TO_REGISTER));
 
-		verify(userService).getByUsername(EMPLOYEE_TO_REGISTER.getUsername());
+		verify(userService).getByUsername(EMPLOYEE_TO_REGISTER.getErs_username());
 		verify(userDAO).create(EMPLOYEE_TO_REGISTER);
 	}
 
@@ -76,7 +76,7 @@ public class AuthServiceTest {
 
 	@Test
 	public void testRegisterFailsWhenIdIsNonZero() {
-		EMPLOYEE_TO_REGISTER.setId(1000);
+		EMPLOYEE_TO_REGISTER.setUser_id(1000);
 
 		assertThrows(NewUserHasNonZeroIdException.class,
 				() -> authService.register(EMPLOYEE_TO_REGISTER)
@@ -87,8 +87,8 @@ public class AuthServiceTest {
 	public void testLoginPassesWhenUsernameDoesExistAndPasswordMatches() {
 		when(userService.getByUsername(anyString())).thenReturn(Optional.of(GENERIC_EMPLOYEE_1));
 
-		assertEquals(GENERIC_EMPLOYEE_1, authService.login(GENERIC_EMPLOYEE_1.getUsername(), GENERIC_EMPLOYEE_1.getPassword()));
+		assertEquals(GENERIC_EMPLOYEE_1, authService.login(GENERIC_EMPLOYEE_1.getErs_username(), GENERIC_EMPLOYEE_1.getErs_password()));
 
-		verify(userService).getByUsername(EMPLOYEE_TO_REGISTER.getUsername());
+		verify(userService).getByUsername(EMPLOYEE_TO_REGISTER.getErs_username());
 	}
 }

@@ -6,6 +6,8 @@ import java.util.Scanner;
 import com.revature.repositories.UserDAO;
 import com.revature.services.UserService;
 import com.revature.services.ReimbursementService;
+import com.revature.services.*;
+
 
 // import com.revature.services.EmployeeService;   // from ben's demo for reference
 //import com.revature.services.RoleService;  
@@ -15,6 +17,9 @@ public class Menu {
 	
 	UserService us = new UserService();
 	ReimbursementService rs = new ReimbursementService();
+	AuthService as = new AuthService();
+	
+	
 	//All of the menu display options and control flow are contained within this method
 		public void displayMenu() {
 			
@@ -33,10 +38,10 @@ public class Menu {
 				
 				//menu options
 				System.out.println("hi -> get greeted");
-				System.out.println("employees -> show all employees");
-				System.out.println("employeesById -> get employees with a certain ID");
-				System.out.println("employeesByTitle -> get employees of a certain title");
-				System.out.println("add -> add a new employee");
+				System.out.println("User -> show all User");
+				System.out.println("UserById -> get User with a certain ID");
+				System.out.println("UserByTitle -> get User of a certain title");
+				System.out.println("add -> add a new User");
 				System.out.println("exit -> exit the application");
 				
 				
@@ -49,23 +54,24 @@ public class Menu {
 				
 				case "hi": {
 					System.out.println("Hello there.");
+					
 					break; //we need a break in each case block, or else all the other cases will still run
 				}
 				
-				case "User" :{
+				case "Users" :{
 					
 					//get the List of employees from the repository layer
-					List<User> users = us.getUsers();
+					List<User> Users = us.getUsers();
 					
 					//enhanced for loop to print out the Employees one by one
-					for (User u : User) {
+					for (User u: Users) {
 						System.out.println(u);
 					}
 					
 					break;
 				}
 				
-				case "employeesById" :{
+				case "UserById" :{
 					System.out.println("What employee id would you like to search for?");
 					
 					int idInput = scan.nextInt(); //get user's input for id
@@ -74,21 +80,21 @@ public class Menu {
 					//what if the user inputs a String? program crashes
 					//up to you to polish your project a bit and add some foolproofing mechanisms
 					
-					List<User> employees = us.getUserById(idInput);
+					List<User> User = us.getUserById(idInput);
 					
-					for(User emp :User) {
-						System.out.println(emp);
+					for(User usr : User) {
+						System.out.println(usr);
 					}
 					
 					break;
 				}
 				
-				case "employeebytitle": {
+				case "Userbytitle": {
 					
-				System.out.println("Enter Employee Role to Search: (Case Sensitive! e.g. \"Fry Cook\")");
+				System.out.println("Enter User Role to Search: (Case Sensitive! e.g. \"Trainer\")");
 				String roleInput = scan.nextLine(); //get user's input for Role to search by
 				
-				List<User> User = es.getUserByReimbursementTitle(roleInput); //get the List of Employees from the dao
+				List<User> User = us.getUserByReimbursementTitle(roleInput); //get the List of Employees from the dao
 				
 				for(User e : User)
 				{
@@ -100,24 +106,25 @@ public class Menu {
 				
 				case "add" : {
 					
-					//we need to prompt the user for the employee's name, and their role_id
-					System.out.println("Enter User's First Name");
-					String f_name = scan.nextLine();
-					
-					System.out.println("Enter User Last Name");
-					String l_name = scan.nextLine();
-					
-					System.out.println("Enter Role Id: 1) Manager 2) Fry Cook 3) Cashier 4) Marketing 5) Nepotism");
-					int roleId = scan.nextInt(); //we need nextInt because ID is an int datatype in the database
-					scan.nextLine(); //without any nextLine(), your enter keystroke will be grabbed as the next input
+//					//we need to prompt the user for the employee's name, and their role_id
+//				 System.out.println("Enter User's First Name");
+//					//String f_name = scan.nextLine();
+//					
+//					//System.out.println("Enter User Last Name");
+//				//	String l_name = scan.nextLine();
+//					
+//					System.out.println("Enter Role Id: 1) Manager 2) Fry Cook 3) Cashier 4) Marketing 5) Nepotism");
+//					int roleId = scan.nextInt(); //we need nextInt because ID is an int datatype in the database
+//					scan.nextLine(); //without any nextLine(), your enter keystroke will be grabbed as the next input
 					//so we need nextLine() in order to actually move to the..... NEXT line!
 					
 					//Given all this information, we'll create a new Employee object to send to the service layer
 					//then the service layer will send it to the repository layer.
-					User newUser = newUser(f_name, l_name, roleId);
+				//	User newUser = new User(10, "", "", "", ""); 
 					
-					//Put the new Employee into the addEmployee() method in the EmployeeService Class
-					es.addEmployee(newUser);
+					
+				//	Put the new Employee into the addEmployee() method in the EmployeeService Class
+				//  us.addUser(newUser);
 					
 					break;
 				}

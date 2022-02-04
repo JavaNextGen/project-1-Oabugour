@@ -19,55 +19,81 @@ import java.util.Objects;
  * @author Center of Excellence
  */
 
+/*CREATE TABLE ers_user (
+		user_id serial PRIMARY KEY,
+		ers_username VARCHAR (50) UNIQUE,
+		ers_password VARCHAR (50),
+		user_f_name TEXT,    --first name
+		user_l_name TEXT, --last name 
+		user_role_id_fk int REFERENCES ers_user_roles(ers_user_roleid)
+*/
+
+// the above have to match the private fields below 
+
 public class AbstractUser {
 
-    private int id;
-    private String username;
-    private String password;
-    private Role role;
+    private int user_id;
+    private String ers_username;
+    private String user_f_name;
+    private String user_l_name;
+    private String ers_password;
+    private Role user_role_id_fk;
 
     public AbstractUser() {
         super();
     }
 
-    public AbstractUser(int id, String username, String password, Role role) {
+    public AbstractUser(String username, String password) {
+		super();
+		this.ers_username = username;
+		this.ers_password = password;
+	}
+    
+    public AbstractUser(int id, String username, String password) {
+		super();
+		this.user_id=id;
+		this.ers_username = username;
+		this.ers_password = password;
+	}
+
+	public AbstractUser(int id, String username, String password, Role role) {
         super();
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
+        this.user_id = id;
+        this.ers_username = username;
+        this.ers_password = password;
+        this.user_role_id_fk = role;
     }
 
     public int getId() {
-        return id;
+        return user_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.user_id = id;
     }
 
     public String getUsername() {
-        return username;
+        return ers_username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.ers_username = username;
     }
 
     public String getPassword() {
-        return password;
+        return ers_password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.ers_password = password;
     }
 
     public Role getRole() {
-        return role;
+        return user_role_id_fk;
     }
 
     public void setRole(Role role) {
-        this.role = role;
+        this.user_role_id_fk = role;
     }
 
     @Override
@@ -75,21 +101,21 @@ public class AbstractUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractUser that = (AbstractUser) o;
-        return id == that.id && Objects.equals(username, that.username) && Objects.equals(password, that.password) && role == that.role;
+        return user_id == that.user_id && Objects.equals(ers_username, that.ers_username) && Objects.equals(ers_password, that.ers_password) && user_role_id_fk == that.user_role_id_fk;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, role);
+        return Objects.hash(user_id,ers_username, ers_password, user_role_id_fk);
     }
 
     @Override
     public String toString() {
         return "AbstractUser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
+                "id=" + user_id +
+                ", username='" + ers_username + '\'' +
+                ", password='" + ers_password + '\'' +
+                ", role=" + user_role_id_fk +
                 '}';
     }
 }

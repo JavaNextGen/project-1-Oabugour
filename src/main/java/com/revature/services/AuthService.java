@@ -27,9 +27,18 @@ public class AuthService {
      *     <li>Must return user object if the user logs in successfully.</li>
      * </ul>
      */
-    public User login(String username, String password) {
-        return null;
-    }
+	
+	public boolean login(String username, String password) {
+		
+	
+		if(username.equals("omniya") && password.equals("password")) {
+			
+			return true;
+			
+		} else 
+		
+		return false; 
+	}
 
     /**
      * <ul>
@@ -56,4 +65,6 @@ public class AuthService {
     public Optional<User> exampleRetrieveCurrentUser() {
         return Optional.empty();
     }
+
+
 }
